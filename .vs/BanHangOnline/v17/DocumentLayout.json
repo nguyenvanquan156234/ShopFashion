@@ -1,0 +1,135 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Project\\Websitebanhang\\BanHangOnline\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|c:\\project\\websitebanhang\\banhangonline\\banhangonline\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\areas\\admin\\views\\account\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\areas\\admin\\views\\account\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|C:\\Project\\Websitebanhang\\BanHangOnline\\banhangonline\\areas\\admin\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{00BF9A2D-708C-4736-B62A-129BAD59F20F}|BanHangOnline\\BanHangOnline.csproj|solutionrelative:banhangonline\\areas\\admin\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "packages.config",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\packages.config",
+              "RelativeDocumentMoniker": "BanHangOnline\\packages.config",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\packages.config",
+              "RelativeToolTip": "BanHangOnline\\packages.config",
+              "ViewState": "AQIAAAsAAAAAAAAAAADgvxoAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-05-29T04:37:41.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Web.config",
+              "RelativeDocumentMoniker": "BanHangOnline\\Web.config",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Web.config",
+              "RelativeToolTip": "BanHangOnline\\Web.config",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAA0AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-05-29T02:23:53.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Views\\Account\\Create.cshtml",
+              "RelativeDocumentMoniker": "BanHangOnline\\Areas\\Admin\\Views\\Account\\Create.cshtml",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Views\\Account\\Create.cshtml",
+              "RelativeToolTip": "BanHangOnline\\Areas\\Admin\\Views\\Account\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-29T02:07:35.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "BanHangOnline\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "BanHangOnline\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAkwE4AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T01:49:50.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "BanHangOnline\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "BanHangOnline\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T02:53:01.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountViewModels.cs",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Models\\AccountViewModels.cs",
+              "RelativeDocumentMoniker": "BanHangOnline\\Models\\AccountViewModels.cs",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Models\\AccountViewModels.cs",
+              "RelativeToolTip": "BanHangOnline\\Models\\AccountViewModels.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAQwD4AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T02:01:17.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "RelativeDocumentMoniker": "BanHangOnline\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "ToolTip": "C:\\Project\\Websitebanhang\\BanHangOnline\\BanHangOnline\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "RelativeToolTip": "BanHangOnline\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-29T01:47:09.336Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

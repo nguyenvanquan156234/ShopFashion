@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<BanHangOnline.Models.ShoppingCartItem>
+<style>
+    .shopping-cart-container {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin: 20px 0;
+    }
+
+        .shopping-cart-container h3 {
+            margin-bottom: 20px;
+        }
+
+        .shopping-cart-container .table {
+            margin-bottom: 0;
+        }
+</style>
+@if (Model != null && Model.Any())
+{
+    <div class="shopping-cart-container">
+        <h3>Giỏ hàng <span class="checkout_items" style="float:right">@Model.Count()</span></h3>
+        @* Declare variables within the Razor code block *@
+        @{
+            var i = 0;
+            decimal tongtien = decimal.Zero;
+        }
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                tongtien += item.TotalPrice;
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductPrice</td>
+                    <td>@item.ProductQuantity</td>
+                </tr>
+            }
+            <tr>
+                <td>Tổng tiền: </td>
+                <td>@tongtien</td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <p>Giỏ hàng của bạn đang trống.Vui lòng quay lại <a href="/"class="text-bg-primary">TRANG CHỦ </a>để mua hàng</p>
+}
+
+

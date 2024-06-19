@@ -1,0 +1,370 @@
+﻿@using System.Web.Script.Serialization
+@using Newtonsoft.Json
+@model IEnumerable<BanHangOnline.Models.EF.Product>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+@{
+    var serializerSettings = new JsonSerializerSettings
+    {
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    };
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/bootstrap4/bootstrap.min.css">
+<link href="~/Content/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="~/Content/assets/styles.css">
+<link href="~/Content/assets/styles/categories_responsive.css" rel="stylesheet" />
+<link href="~/Content/assets/styles/categories_styles.css" rel="stylesheet" />
+<style>
+    /* Your existing styles */
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-item {
+        width: 30%;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    .product {
+        background-color: #fff;
+        border: 1px solid #e1e1e1;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .product_image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .product_info {
+        text-align: center;
+    }
+
+    .red_button {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .red_button a {
+            color: #fff;
+            background-color: red;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .sidebar_section {
+        border: 1px solid #e1e1e1;
+        padding: 20px;
+        background-color: #f9f9f9;
+        width: 300px;
+        margin: auto;
+    }
+
+    .sidebar_title h5 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    #slider-range {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background: #f6931f;
+        height: 10px;
+        position: relative;
+        border-radius: 5px;
+    }
+
+    .ui-slider-horizontal .ui-slider-handle {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        top: -5px;
+    }
+
+    .ui-slider-range {
+        background: #d97b1a;
+        border-radius: 5px;
+    }
+
+    .filter_button {
+        text-align: center;
+    }
+
+        .filter_button span {
+            background-color: #f6931f;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+            .filter_button span:hover {
+                background-color: #d97b1a;
+            }
+</style>
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Product Category</h5>
+                    </div>
+                    @Html.Action("MenuLeft", "Menu")
+                </div>
+
+                <!-- Price Range Filtering -->
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Filter by Price</h5>
+                    </div>
+                    <p>
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    </p>
+                    <div id="slider-range"></div>
+                    <div class="filter_button"><span>filter</span></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main_content">
+                <!-- Products -->
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Product Sorting -->
+                            <div class="product_sorting_container product_sorting_container_top">
+                                <ul class="product_sorting">
+                                    <li>
+                                        <span class="type_sorting_text">Default Sorting</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_type">
+                                            <li class="type_sorting_btn" data-sort="default"><span>Default Sorting</span></li>
+                                            <li class="type_sorting_btn" data-sort="price"><span>Price</span></li>
+                                            <li class="type_sorting_btn" data-sort="name"><span>Product Name</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Show</span>
+                                        <span class="num_sorting_text">3</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_num">
+                                            <li class="num_sorting_btn" data-num="3"><span>3</span></li>
+                                            <li class="num_sorting_btn" data-num="5"><span>5</span></li>
+                                            <li class="num_sorting_btn" data-num="10"><span>10</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="pages d-flex flex-row align-items-center">
+                                    <div class="page_current">
+                                        <span>1</span>
+                                        <ul class="page_selection">
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="page_total"><span>of</span> 3</div>
+                                    <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                </div>
+                            </div>
+
+                            <!-- Product Grid -->
+                            <div class="product-grid" id="product-grid">
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        var str = "";
+                                        var img = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+                                        if (img != null)
+                                        {
+                                            str = img.Image;
+                                        }
+                                        <div class="product-item men">
+                                            <div class="product discount product_filter">
+                                                <div class="product_image">
+                                                    <img src="@str" alt="">
+                                                </div>
+                                                <div class="favorite favorite_left"></div>
+                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.Id)">@item.Title</a></h6>
+                                                    <div class="product_price">@item.PriceSale<span>@item.Price</span></div>
+                                                </div>
+                                            </div>
+                                            <div id="quantity_value" style="display: none;">1</div>
+                                            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">add to cart</a></div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                            <!-- Product Sorting -->
+                            <div class="product_sorting_container product_sorting_container_bottom clearfix">
+                                <ul class="product_sorting">
+                                    <li>
+                                        <span>Show:</span>
+                                        <span class="num_sorting_text">3</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_num">
+                                            <li class="num_sorting_btn" data-num="3"><span>3</span></li>
+                                            <li class="num_sorting_btn" data-num="5"><span>5</span></li>
+                                            <li class="num_sorting_btn" data-num="10"><span>10</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <span class="showing_results">Showing 1–3 of @Model.Count() results</span>
+                                <div class="pages d-flex flex-row align-items-center">
+                                    <div class="page_current">
+                                        <span>1</span>
+                                        <ul class="page_selection">
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="page_total"><span>of</span> @Math.Ceiling((double)Model.Count() / 3)</div>
+                                    <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+    $(function () {
+   var products = @Html.Raw(JsonConvert.SerializeObject(Model, serializerSettings));
+
+        $("#slider-range").slider({
+            range: true,
+            min: 100000,
+            max: 1000000,
+            values: [150000, 500000],
+            slide: function (event, ui) {
+                $("#amount").val("₫" + ui.values[0] + " - ₫" + ui.values[1]);
+            },
+            create: function (event, ui) {
+                $("#amount").val("₫" + $("#slider-range").slider("values", 0) +
+                    " - ₫" + $("#slider-range").slider("values", 1));
+            }
+        });
+
+        $(".filter_button span").click(function () {
+            const minPrice = $("#slider-range").slider("values", 0);
+            const maxPrice = $("#slider-range").slider("values", 1);
+            filterProducts(minPrice, maxPrice);
+        });
+
+        $(".type_sorting_btn").click(function () {
+            const sortCriteria = $(this).data("sort");
+            $(".type_sorting_text").text($(this).text());
+            sortProducts(sortCriteria);
+        });
+
+        $(".num_sorting_btn").click(function () {
+            const num = $(this).data("num");
+            $(".num_sorting_text").text($(this).text());
+            showProducts(num);
+        });
+
+        function filterProducts(minPrice, maxPrice) {
+            const filtered = products.filter(product => product.PriceSale >= minPrice && product.PriceSale <= maxPrice);
+            displayProducts(filtered);
+        }
+
+        function sortProducts(criteria) {
+            let sortedProducts = [...products];
+            if (criteria === 'price') {
+                sortedProducts.sort((a, b) => a.PriceSale - b.PriceSale);
+            } else if (criteria === 'name') {
+                sortedProducts.sort((a, b) => a.Title.localeCompare(b.Title));
+            }
+            displayProducts(sortedProducts);
+        }
+
+        function showProducts(num) {
+            const numToShow = parseInt(num);
+            displayProducts(products.slice(0, numToShow));
+        }
+
+        function displayProducts(productsToDisplay) {
+            const productGrid = $("#product-grid");
+            productGrid.empty();
+            productsToDisplay.forEach(product => {
+                let str = "";
+                const img = product.ProductImage.find(x => x.IsDefault);
+                if (img != null) {
+                    str = img.Image;
+                }
+                const productItem = `
+                <div class="product-item men">
+                    <div class="product discount product_filter">
+                        <div class="product_image">
+                            <img src="${str}" alt="">
+                        </div>
+                        <div class="favorite favorite_left"></div>
+                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                        <div class="product_info">
+                            <h6 class="product_name"><a href="/chi-tiet/${product.Alias}-p${product.Id}">${product.Title}</a></h6>
+                            <div class="product_price">${product.PriceSale}<span>${product.Price}</span></div>
+                        </div>
+                    </div>
+                    <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                </div>`;
+                productGrid.append(productItem);
+            });
+        }
+
+        // Initial display of products
+        showProducts(3);
+    });
+
+    </script>
+    <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/assets/styles/bootstrap4/popper.js"></script>
+    <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Content/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Content/assets/plugins/easing/easing.js"></script>
+    <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    
+}

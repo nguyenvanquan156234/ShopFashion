@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Thành công";
+}
+
+
+
+@using System.Web.Script.Serialization
+@using Newtonsoft.Json
+@model IEnumerable<BanHangOnline.Models.OrderViewModel>
+@{
+    ViewBag.Title = "Thanh toán";
+}
+@{
+    var serializerSettings = new JsonSerializerSettings
+    {
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    };
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Thêm jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Thêm CSS của jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Các tệp CSS khác -->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/bootstrap4/bootstrap.min.css">
+<link href="~/Content/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" href="~/Content/assets/styles.css">
+<link href="~/Content/assets/styles/categories_responsive.css" rel="stylesheet" />
+<link href="~/Content/assets/styles/categories_styles.css" rel="stylesheet" />
+<style>
+    .col-md-9 .form-control {
+        width: 100%;
+        max-width: 100%;
+    }
+</style>
+
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+            <!-- Main Content -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Đặt hàng thành công</h1>
+                    
+                </div>
+
+                <hr />
+            </div>
+
+           
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function OnSuccessCO(rs) {
+            if (rs.Success) {
+                $('#show_success').html("Bạn đã đặt hàng thành công")
+            }
+        }
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'CustomerName': {
+                        required: true
+                    },
+                    'Phone': {
+                        required: true
+                    }
+                },
+                messages: {
+                    'CustomerName': 'Bạn không thể để trống tên',
+                    'Phone': 'Bạn không thể để trống Số điện thoại',
+                }
+
+            });
+        });
+        $(document).ready(function () {
+            // Ensure that the slider function is available
+            if ($.ui && $.ui.slider) {
+                $("#slider-range").slider({
+                    range: true,
+                    min: 100000,
+                    max: 1000000,
+                    values: [150000, 500000],
+                    slide: function (event, ui) {
+                        $("#amount").val("₫" + ui.values[0] + " - ₫" + ui.values[1]);
+                    },
+                    create: function (event, ui) {
+                        $("#amount").val("₫" + $("#slider-range").slider("values", 0) + " - ₫" + $("#slider-range").slider("values", 1));
+                    }
+                });
+
+                $(".filter_button span").click(function () {
+                    const minPrice = $("#slider-range").slider("values", 0);
+                    const maxPrice = $("#slider-range").slider("values", 1);
+                    filterProducts(minPrice, maxPrice);
+                });
+
+                $(".type_sorting_btn").click(function () {
+                    const sortCriteria = $(this).data("sort");
+                    $(".type_sorting_text").text($(this).text());
+                    sortProducts(sortCriteria);
+                });
+
+                $(".num_sorting_btn").click(function () {
+                    const num = $(this).data("num");
+                    $(".num_sorting_text").text($(this).text());
+                    showProducts(num);
+                });
+
+                function filterProducts(minPrice, maxPrice) {
+                    const filtered = products.filter(product => product.PriceSale >= minPrice && product.PriceSale <= maxPrice);
+                    displayProducts(filtered);
+                }
+
+                function sortProducts(criteria) {
+                    let sortedProducts = [...products];
+                    if (criteria === 'price') {
+                        sortedProducts.sort((a, b) => a.PriceSale - b.PriceSale);
+                    } else if (criteria === 'name') {
+                        sortedProducts.sort((a, b) => a.Title.localeCompare(b.Title));
+                    }
+                    displayProducts(sortedProducts);
+                }
+
+                function showProducts(num) {
+                    const numToShow = parseInt(num);
+                    displayProducts(products.slice(0, numToShow));
+                }
+
+                function displayProducts(productsToDisplay) {
+                    const productGrid = $("#product-grid");
+                    productGrid.empty();
+                    productsToDisplay.forEach(product => {
+                        let str = "";
+                        const img = product.ProductImage.find(x => x.IsDefault);
+                        if (img != null) {
+                            str = img.Image;
+                        }
+                        const productItem = `
+                                        <div class="product-item men">
+                                            <div class="product discount product_filter">
+                                                <div class="product_image">
+                                                    <img src="${str}" alt="">
+                                                </div>
+                                                <div class="favorite favorite_left"></div>
+                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="/chi-tiet/${product.Alias}-p${product.Id}">${product.Title}</a></h6>
+                                                    <div class="product_price">${product.PriceSale}<span>${product.Price}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                        </div>`;
+                        productGrid.append(productItem);
+                    });
+                }
+
+                // Initial display of products
+                showProducts(3);
+            } else {
+                console.error("jQuery UI slider is not loaded");
+            }
+        });
+
+
+    </script>
+    <!-- Các tệp JS khác -->
+    <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script src="~/Content/assets/styles/bootstrap4/popper.js"></script>
+    <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Content/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Content/assets/plugins/easing/easing.js"></script>
+}

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<BanHangOnline.Models.ShoppingCartItem>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<table class="table">
+    <tr class="text-center">
+        <th>STT</th>
+        <th>Ảnh sản phẩm</th>
+        <th>Tên sản phẩm</th>
+        <th>Danh Mục</th>
+        <th>Giá</th>
+        <th style="width:100px">Số lượng</th>
+        <th>Tổng giá</th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.Any())
+    {
+        var i = 0;
+        decimal totalAmount = 0;
+        foreach (var item in Model)
+        {
+            totalAmount += item.ProductPrice * item.ProductQuantity;
+            <tr class="text-center" id="trow_@item.ProductId">
+                <td>@(i + 1)</td>
+                <td><img src="@item.ProductImg" width="60" /></td>
+                <td><a href="/chi-tiet/@item.Alias-p@(item.ProductId)">@item.ProductName</a></td>
+                <td>@item.CategoryName</td>
+                <td id="Price_@item.ProductId">@item.ProductPrice</td>
+                <td><input type="number" class="form-control quantity-input" id="Quantity_@(item.ProductId)" value="@item.ProductQuantity" data-product-id="@item.ProductId" /></td>
+                <td id="TotalPrice_@item.ProductId">@(item.ProductPrice * item.ProductQuantity)</td>
+                <td>
+                    <a href="#" data-id="@item.ProductId" class="btn btn-danger btn-sm btnDelete">Xóa</a>
+                </td>
+            </tr>
+            i++;
+        }
+        <tr>
+            <td colspan="6" class="text-right">Tổng tiền:</td>
+            <td id="totalAmount">@totalAmount</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="7" class="text-right text-white">
+                <a class="btn btn-danger btnDeleteAll">Xóa tất cả</a>
+                @{
+                    var productId = Model.FirstOrDefault()?.ProductId;
+                }
+                <a href="#" class="btn btn-success btnUpdateAll" data-id="@productId">Cập nhật lại giỏ hàng</a>*
+                <a href="/thanh-toan" class="btn btn-success">Thanh Toán</a>
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th colspan="7">Không có sản phẩm nào trong giỏ hàng</th>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            // Khi số lượng của sản phẩm thay đổi
+         $("table tbody tr").each(function () {
+    var productId = $(this).find('.quantity-input').data("product-id");
+    var quantity = $(this).find('.quantity-input').val();
+    updateQuantity(productId, quantity);
+});
+
+
+            // Khi nhấn nút "Cập nhật lại giỏ hàng"
+            $(".btnUpdateAll").click(function () {
+                $("table tbody tr").each(function () {
+                    var productId = $(this).find('.quantity-input').data("product-id");
+                    var quantity = $(this).find('.quantity-input').val();
+                    updateQuantity(productId, quantity);
+                });
+
+            });
+
+            function updateQuantity(productId, quantity) {
+                $.ajax({
+                    url: "/ShoppingCart/UpdateAll",
+                    type: "POST",
+                    data: { id: productId, quantity: quantity },
+                    success: function (response) {
+                        if (response.Success) {
+                            // Cập nhật số lượng hiển thị trên trang web
+                            $("#Quantity_" + productId).val(response.UpdatedQuantity);
+                        } else {
+                            alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+                        }
+                    },
+                    error: function () {
+                        alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+                    }
+                });
+            }
+        });
+
+    </script>
+}
+
+
